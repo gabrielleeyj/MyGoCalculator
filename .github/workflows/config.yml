@@ -21,13 +21,14 @@ jobs:
       - name: Install Dependencies
         id: InstallDeps
         run: |
-          go get github.com/tebeka/go2xunit
+          go get -u github.com/jstemmer/go-junit-report
 
       - if: ${{success()}}
         name: Test Go 
         run: |
+          go test -v 2>&1 | go-junit-report > report.xml
           go test -v
-          go test -v | go2xunit > report.xml            
+                 
       - if: ${{failure()}}
         name: Create Issues
         uses: nashmaniac/create-issue-action@v1.1
