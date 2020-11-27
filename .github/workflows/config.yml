@@ -15,7 +15,7 @@ jobs:
       - name: Setup go
         uses: actions/setup-go@v2
         with:
-          go-version: '1.13.7'
+          go-version: go-latest
       - name: Run version check
         run: go version
       - name: Install Dependencies
@@ -26,8 +26,8 @@ jobs:
       - if: ${{success()}}
         name: Test Go 
         run: |
+          go test .
           go test -v 2>&1 | go-junit-report > report.xml
-          go test -v
                  
       - if: ${{failure()}}
         name: Create Issues
