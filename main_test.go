@@ -8,7 +8,9 @@ func TestAddition(t *testing.T) {
 	if result < 0 {
 		t.Error("Value is negative")
 	}
-	if result != 7 {
-		t.Errorf("%d + %d = %d, Value is not 7", a, b, result)
-	}
+	if result != 4 {
+		t.Errorf("%d + %d = %d, Value is not 3", a, b, result)
+	} else {
+		fmt.Printf("Result : %d is correct!", result)
+
 }
