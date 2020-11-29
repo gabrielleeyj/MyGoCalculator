@@ -1,27 +1,28 @@
-name: Test Go
-on: [push, pull_request]
-schedule:
-    cron: '0 0 * * *'
+name: workflow
+
+on:
+  push:
+    branches: [ '**' ]
+  pull_request:
+    branches: [ '**' ]
 
 jobs:
-initializing:
-    runs-on: ubuntu-latest
-    steps:
-    - run: |
-        echo "Hello ${{ github.event.inputs.name }}! Starting Test"
-test:
-    strategy:
-      matrix:
-        go-version: [1.14.x, 1.15.x]
-        os: [ubuntu-latest, macos-latest, windows-latest]
-    runs-on: ${{ matrix.os }}
-    steps:
-    - name: Install Go
-      uses: actions/setup-go@v2
-      with:
-        go-version: ${{ matrix.go-version }}
-    - name: Checkout code
-      uses: actions/checkout@v2
-    - name: Test
-      run: go test .
+  full_ci:
+    runs-on: ubuntu-18.04
 
+    steps:
+      - name : checkout
+        uses: actions/checkout@v2
+
+      - uses: actions/setup-go@v2
+        with:
+          go-version: '1.14'
+
+      - name: run tests
+        run: go test -json ./... > test.json
+
+      - name: annotate tests
+        if: always()
+        uses: guyarb/golang-test-annotations@v0.2.0
+        with:
+          test-results: test.json
