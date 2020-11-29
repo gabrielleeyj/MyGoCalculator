@@ -1,34 +1,19 @@
-name: workflow
+name: Go 
 
 on:
   push:
-    branches: main
-    tags: -v*
-  pull_request:
-    branches: 
-      - '**'
-  schedule:
-    - cron: '0 0 * * *'
-
+    branches: [master]
+   
 jobs:
-  full_ci:
-    runs-on: ubuntu-18.04
-
+  my-job:
+    name: Setup ubuntu
+    runs-on: ubuntu-latest
     steps:
-      - name : checkout
-        uses: actions/checkout@v2
-
-      - uses: actions/setup-go@v2
-        with:
-          go-version: '1.14'
-
-      - name: run tests
-        run: |
-          go test .
-          go test -json ./... > test.json
-
-      - name: annotate tests
-        if: always()
-        uses: guyarb/golang-test-annotations@v0.2.0
-        with:
-          test-results: test.json
+    - uses: actions/checkout@v2
+    - name: Setup Go
+      uses: actions/setup-go@v2
+      with:
+        go-version: 'go-latest' # Get latest Go version to download (if necessary) and use.
+    - run: |
+        go version
+        go test .
