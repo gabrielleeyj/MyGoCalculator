@@ -1,9 +1,7 @@
 name: Test Go
 on: [push, pull_request]
-  schedule:
+schedule:
     cron: '0 0 * * *'
-
-
 
 jobs:
 initializing:
@@ -11,8 +9,7 @@ initializing:
     steps:
     - run: |
         echo "Hello ${{ github.event.inputs.name }}! Starting Test"
-
-  test:
+test:
     strategy:
       matrix:
         go-version: [1.14.x, 1.15.x]
@@ -27,10 +24,4 @@ initializing:
       uses: actions/checkout@v2
     - name: Test
       run: go test .
-      
-      
-  createissue:
-    steps:
-      - uses: JasonEtco/create-an-issue@v2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
