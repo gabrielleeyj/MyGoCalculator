@@ -1,9 +1,15 @@
 name: README Info Update
 
 on:
+  push:
+    branches: main
+    tags: -v*
+  pull_request:
+    branches: 
+      - '**'
   schedule:
-    - cron: "0 0 * * *"
-  workflow_dispatch:
+    - cron: '0 0 * * *'
+
 
 jobs:
   update-readme:
@@ -12,10 +18,11 @@ jobs:
     steps:
       - uses: th3c0d3br34ker/github-readme-info@master
         with:
-          GH_TOKEN:  ${{secrets.ACTION_SECRET}}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
           TIMEZONE: "Asia/Singapore"
           SHOW_LINES_OF_CODE: "True"
           SHOW_PROFILE_VIEWS: "True"
           SHOW_DAILY_COMMIT: "True"
           SHOW_WEEKLY_COMMIT: "True"
           SHOW_LANGUAGE: "True"
+          SHOW_TOTAL_CONTRIBUTIONS: "True"
