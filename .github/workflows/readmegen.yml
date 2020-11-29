@@ -25,17 +25,3 @@ jobs:
           SHOW_DAILY_COMMIT: "True"
           SHOW_WEEKLY_COMMIT: "True"
           SHOW_LANGUAGE: "True"
-  gitIssueCreation:
-    name: Git Creation Demo
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@master
-      - name: Git Creation Demo
-        uses: bryannice/gitactions-git-issue-creation@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_COMMIT_SHA: ${{ github.sha }}
-          GITHUB_REPO_OWNER: 'gabrielleeyj'
-          GITHUB_REPO_NAME: 'MyGoCalculator'
-          GITHUB_ISSUE_TITLE: 'Issue Created for ${{ github.action }}'
-          GITHUB_ISSUE_BODY: '${{ github.event }} has been record.'
