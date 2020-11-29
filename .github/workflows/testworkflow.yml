@@ -2,9 +2,13 @@ name: workflow
 
 on:
   push:
-    branches: [ '**' ]
+    branches: main
+    tags: -v*
   pull_request:
-    branches: [ '**' ]
+    branches: 
+      - '**'
+  schedule:
+    - cron: '0 0 * * *'
 
 jobs:
   full_ci:
