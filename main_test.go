@@ -12,5 +12,5 @@ func TestAddition(t *testing.T) {
 		t.Errorf("%d + %d = %d, Value is not 3", a, b, result)
 	} else {
 		fmt.Printf("Result : %d is correct!", result)
-
+	}
 }
