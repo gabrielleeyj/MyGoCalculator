@@ -1,0 +1,18 @@
+on: push
+name: Git Issue Creator
+jobs:
+ gitIssueCreation:
+    name: Creating Issue
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Start Issue Creation
+        uses: bryannice/gitactions-git-issue-creation@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_COMMIT_SHA: ${{ github.sha }}
+          GITHUB_REPO_OWNER: 'gabrielleeyj'
+          GITHUB_REPO_NAME: 'MyGoCalculator'
+          GITHUB_ISSUE_TITLE: 'Issue Created for ${{ github.action }}'
+          GITHUB_ISSUE_BODY: '${{ github.event }} has been record.'
+ 
