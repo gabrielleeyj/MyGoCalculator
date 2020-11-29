@@ -1,12 +1,12 @@
 on: push
-name: Git Creation Demo
+name: Git Issue Creation
 jobs:
   gitIssueCreation:
     name: Git Creation Demo
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-      - name: Git Creation Demo
+      - name: Git Issue Creation
         uses: bryannice/gitactions-git-issue-creation@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
