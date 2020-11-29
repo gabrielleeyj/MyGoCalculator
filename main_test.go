@@ -1,6 +1,9 @@
 package main
 
-import "testing"
+import (
+	"testing"
+	"fmt"
+)
 
 func TestAddition(t *testing.T) {
 	a, b := 1, 3
