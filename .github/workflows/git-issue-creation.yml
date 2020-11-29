@@ -12,6 +12,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_COMMIT_SHA: ${{ github.sha }}
           GITHUB_REPO_OWNER: 'gabrielleeyj'
-          GITHUB_REPO_NAME: 'github-issue-creation'
+          GITHUB_REPO_NAME: 'MyGoCalculator'
           GITHUB_ISSUE_TITLE: 'Issue Created for ${{ github.action }}'
           GITHUB_ISSUE_BODY: '${{ github.action }} has ${{ github.action}} on ${{ github.repository }}.'
